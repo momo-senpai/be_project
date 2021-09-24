@@ -80,6 +80,9 @@ def scanner():
                            stocks=stocks, pattern=pattern, fet=fet,
                            state=stock_list, active='scanner')
 
+@app.route('/prediction')
+def prediction():
+    return render_template('prediction.html')
 
 @app.route('/about')
 def about():
