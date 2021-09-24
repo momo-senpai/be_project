@@ -1,5 +1,5 @@
 {% extends "header.html" %}
-{% block title %}Welcome{% endblock %}
+{% block title %}Predict{% endblock %}
 {% block content %}
 <div class="section full-height">
     <div class="absolute-center">
@@ -7,7 +7,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h1><span>Prediction Page </span>&nbsp;<span>Under Construction</span><br>
+                        <form method="POST">
+                        <label for="name">Enter Symbol:</label>
+                        <input type="text" id="name" name="name">
+                        <button type="submit" class="submit-btn">Predict</button>
+                        </form>
                         </h1>
                     </div>
                 </div>
