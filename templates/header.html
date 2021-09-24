@@ -34,7 +34,7 @@
 
                         <a class="navbar-brand" href="{{ url_for('index') }}"><img
                                 src="{{ url_for('static', filename='icons/logo.png') }}" style="width:50px; height:50px"
-                                alt=""></a>Analyzer
+                                alt=""></a>HawkEye
 
                         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                             data-target="#collapsibleNavbar" aria-expanded="false">
@@ -54,6 +54,10 @@
                                 <li
                                     class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 {% if active=='pattern' %} active {% endif %}">
                                     <a class="nav-link" href="{{ url_for('patterns') }}">Patterns</a>
+                                </li>
+                                <li
+                                    class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 {% if active=='pattern' %} active {% endif %}">
+                                    <a class="nav-link" href="{{ url_for('patterns') }}">Prediction</a>
                                 </li>
                                 <li
                                     class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 {% if active=='about' %} active {% endif %}">
@@ -76,7 +80,7 @@
             <div class="row">
                 <div>
                     <p class="copyright-text">Copyright &copy; 2021 All Rights Reserved by
-                        <a href="https://github.com/omkolte17/" target="_blank">Om Kolte</a>.
+                        <a href="https://github.com/omkolte17/" target="_blank">HawkEye & Co</a>.
                     </p>
                 </div>
                 <div class="col-md-8 col-sm-6 col-xs-12">

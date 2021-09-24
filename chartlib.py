@@ -27,9 +27,9 @@ def breaking_out(df, percentage=2.5):
     return False
 
 
-for filename in os.listdir(' C:/Users/Aditya/Desktop/github_projects/candlestick-pattern-analyzer/data/stocks/'):
+for filename in os.listdir('C:/Users/Aditya/Documents/GitHub/be_project/data/stocks'):
     df = pandas.read_csv(
-        ' C:/Users/Aditya/Desktop/github_projects/candlestick-pattern-analyzer/data/stocks/{}'.format(filename))
+        'C:/Users/Aditya/Documents/GitHub/be_project/data/stocks/{}'.format(filename))
 
     if consolidating(df, percentage=2.5):
         print("{} is consolidating".format(filename))
