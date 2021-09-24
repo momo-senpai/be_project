@@ -515,7 +515,7 @@ h1 span:nth-child(15){
 
 body.dark{
 	color: #fff;
-	background-color: #1f2029;
+	background-color: #6e74ad;
 }
 body.dark .navbar-brand img{
   filter: brightness(100%);
@@ -531,7 +531,7 @@ body.dark p{
     transition-delay: 0ms !important;
 }
 body.dark .bg-light {
-	background-color: #14151a !important;
+	background-color: #bac1e4 ;
 }
 body.dark .start-header {
 	box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
