@@ -211,7 +211,7 @@ div.card.show div.flap2 {
 }
 
 .hr {
-  background-color: gray;
+  background-color: red;
 }
 
 #pattern {
@@ -229,7 +229,7 @@ div.card.show div.flap2 {
   outline: none;
   overflow: hidden;
   position: relative;
-  color: #fff;
+  color: red;
   font-weight: 400;
   font-size: 1rem;
   background-color: transparent;

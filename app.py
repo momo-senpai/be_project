@@ -9,7 +9,7 @@ from flask import Flask, request, render_template
 from patterns import candlestick_patterns
 from datetime import date
 import numpy as np 
-from fbprophet import Prophet
+# from fbprophet import Prophet
 
 app = Flask(__name__)
 
