@@ -69,7 +69,7 @@ div.cards {
   text-align: center;
 }
 div.card {
-  background: orange;
+  background: gray;
   display: inline-block;
   margin: 8px;
   max-width: 300px;
@@ -89,7 +89,7 @@ div.card .card__image-holder {
   padding-bottom: 75%;
 }
 div.card div.card-title {
-  background: orange;
+  background: gray;
   padding: 6px 15px 10px;
   position: relative;
   z-index: 0;
@@ -123,7 +123,7 @@ div.card div.card-title a.toggle-info span.right {
 div.card div.card-title h2 {
   font-size: 20px;
   font-weight: 500;
-  color: red;
+  color: white;
   letter-spacing: -0.05em;
   margin: 0;
   padding: 0;
@@ -138,8 +138,8 @@ div.card div.card-description {
   padding: 0 15px 10px;
   position: relative;
   font-size: 14px;
-  color: red;
-  background: blue;
+  color: white;
+  background: gray;
 }
 div.card div.card-actions {
   box-shadow: 0 2px 0px 0 rgba(0, 0, 0, 0.075);
@@ -187,7 +187,7 @@ div.card.show div.card-title a.toggle-info span.right {
   left: 10px;
 }
 div.card.show div.card-flap {
-  background: orange;
+  background: gray;
   transform: rotateX(0deg);
 }
 div.card.show div.flap1 {
@@ -211,7 +211,7 @@ div.card.show div.flap2 {
 }
 
 .hr {
-  background-color: red;
+  background-color: gray;
 }
 
 #pattern {
@@ -229,7 +229,7 @@ div.card.show div.flap2 {
   outline: none;
   overflow: hidden;
   position: relative;
-  color: red;
+  color: #fff;
   font-weight: 400;
   font-size: 1rem;
   background-color: transparent;
