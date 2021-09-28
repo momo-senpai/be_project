@@ -561,11 +561,11 @@ body.dark .dropdown-item {
 	color: #fff;
 }
 body.dark .navbar-light .navbar-toggler-icon {
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid #fff;
 }
 body.dark .navbar-light .navbar-toggler-icon:after, 
 body.dark .navbar-light .navbar-toggler-icon:before{
-	background-color: #000;
+	background-color: #fff;
 }
 body.dark .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
