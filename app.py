@@ -85,17 +85,20 @@ def scanner():
 @app.route('/prediction', methods=['GET', "POST"])
 def prediction():
     if request.method == 'POST':
-        Symbol = request.form.get('name')
-        stock = yf.Ticker(Symbol)
-        data = stock.history(period = 'max')
-        df = pd.DataFrame(data)
-        df = df[["Date","Close"]]
-        df = df.rename(columns = {"Date":"ds","Close":"y"})
-        fbp = Prophet(daily_seasonality = True)
-        fbp.fit(df)
-        fut = fbp.make_future_dataframe(periods=3650) 
-        forecast = fbp.predict(fut)
-        print(forecast)
+        try:
+            ticker = yf.Ticker('ITC')
+            data = ticker.history(period="1d")
+            df = pandas.DataFrame(data).reset_index()
+            df = df[["Date","Close"]]
+            df = df.rename(columns = {"Date":"ds","Close":"y"})
+            fbp = Prophet(daily_seasonality = True)
+            fbp.fit(df)
+            fut = fbp.make_future_dataframe(periods=3650) 
+            forecast = fbp.predict(fut)
+            print(forecast)
+            
+        except Exception as e:
+            print("Failed to get required data.", e)
     return render_template('prediction.html')
 
 @app.route('/about')
