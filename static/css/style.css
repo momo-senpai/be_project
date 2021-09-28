@@ -9,12 +9,12 @@ body{
 	line-height: 24px;
 	font-weight: 400;
 	height: 100vh;
-	color: #cccca9;
-	background-image: url('C:\Users\Anushka\Desktop\College\github_proj\be_project\static\Coins-rafiki.svg');
+	color: #212112;
+	background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
 	background-position: center;
 	background-repeat: repeat;
 	background-size: 7%;
-	background-color: red;
+	background-color: #fff;
 	overflow-x: hidden;
     transition: all 200ms linear;
 }
@@ -199,7 +199,6 @@ body{
 	transition : all 0.3s ease-out;
 }
 .start-header.scroll-on {
-	color:rgba(0, 0, 0, 0.25);
 	box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15);
 	padding: 10px 0;
 	-webkit-transition : all 0.3s ease-out;
@@ -220,9 +219,7 @@ body{
 	transition : all 0.3s ease-out;
 }
 .navbar{
-	color:rgba(0, 0, 0, 0.25);
 	padding: 0;
-	background-color: #000 !important;
 }
 .navbar-brand img{
 	height: 28px;
@@ -242,12 +239,11 @@ body{
 	outline: none;
 }
 .navbar-light .navbar-toggler-icon {
-	color:rgba(0, 0, 0, 0.25);
 	width: 24px;
 	height: 17px;
 	background-image: none;
 	position: relative;
-	border-bottom: 1px solid #bb33ff;
+	border-bottom: 1px solid #000;
     transition: all 300ms linear;
 }
 .navbar-light .navbar-toggler-icon:after, 
@@ -255,7 +251,7 @@ body{
 	width: 24px;
 	position: absolute;
 	height: 1px;
-	background-color: #bb33ff;
+	background-color: #000;
 	top: 0;
 	left: 0;
 	content: '';
@@ -278,7 +274,6 @@ body{
 	color: #212121 !important;
 	font-weight: 500;
     transition: all 200ms linear;
-
 }
 .nav-item:hover .nav-link{
 	color: #8167a9 !important;
@@ -307,10 +302,9 @@ body{
 	opacity: 1;
 }
 .nav-item.active:hover:after{
-	opacity: 100%;
+	opacity: 0;
 }
 .nav-item{
-	color:rgba(0, 0, 0, 0.15);
 	position: relative;
     transition: all 200ms linear;
 }
@@ -344,13 +338,6 @@ body{
 }
 h1{
 	font-size: 48px;
-	line-height: 1.2;
-	font-weight: 700;
-	color: #212112;
-	text-align: center;
-}
-h2{
-	font-size: 38px;
 	line-height: 1.2;
 	font-weight: 700;
 	color: #212112;
@@ -528,7 +515,7 @@ h1 span:nth-child(15){
 
 body.dark{
 	color: #fff;
-	background-color: #6e74ad;
+	background-color: #1f2029;
 }
 body.dark .navbar-brand img{
   filter: brightness(100%);
@@ -544,7 +531,7 @@ body.dark p{
     transition-delay: 0ms !important;
 }
 body.dark .bg-light {
-	background-color: #bac1e4 ;
+	background-color: #14151a !important;
 }
 body.dark .start-header {
 	box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
@@ -612,7 +599,7 @@ td {
 		height: 1px;
 		content: "";
 		border: none;
-		background-color: #bb33ff;
+		background-color: #000;
 		vertical-align: 0;
 	}
 	.dropdown-toggle::after {
@@ -624,7 +611,7 @@ td {
 		height: 11px;
 		content: "";
 		border: none;
-		background-color: #bbb;
+		background-color: #000;
 		vertical-align: 0;
 		transition: all 200ms linear;
 	}
@@ -673,5 +660,5 @@ td {
 	transition: all 250ms linear;
 }
 body.dark .logo img {
-  filter: brightness(100%);
+  filter: brightness(50%);
 }
