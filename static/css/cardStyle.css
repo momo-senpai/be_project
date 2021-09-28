@@ -69,7 +69,7 @@ div.cards {
   text-align: center;
 }
 div.card {
-  background: orange;
+  background: grey;
   display: inline-block;
   margin: 8px;
   max-width: 300px;
@@ -89,7 +89,7 @@ div.card .card__image-holder {
   padding-bottom: 75%;
 }
 div.card div.card-title {
-  background: orange;
+  background: grey;
   padding: 6px 15px 10px;
   position: relative;
   z-index: 0;
@@ -187,7 +187,7 @@ div.card.show div.card-title a.toggle-info span.right {
   left: 10px;
 }
 div.card.show div.card-flap {
-  background: orange;
+  background: grey;
   transform: rotateX(0deg);
 }
 div.card.show div.flap1 {
