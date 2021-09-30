@@ -82,6 +82,26 @@ def scanner():
                            stocks=stocks, pattern=pattern, fet=fet,
                            state=stock_list, active='scanner')
 
+@app.route('/news', methods=['GET', "POST"])
+def news():
+    from newsapi import NewsApiClient
+    newsapi = NewsApiClient(api_key='ca28357f195f40a9b89c153b4f569361')
+    if request.method == 'POST':
+        term = request.form.get('name')
+        all_articles = newsapi.get_everything(q=term,
+                                      sources='google-news-in,the-hindu,the-times-of-india',
+                                      domains='www.thehindu.com,timesofindia.indiatimes.com,news.google.com',
+                                      from_param='2021-09-28',
+                                      to='2021-09-30',
+                                      language='en',
+                                      sort_by='relevancy',
+                                      page=2)
+
+        return render_template('news.html',articles=all_articles['articles'])
+            
+            
+    return render_template('news.html',articles=None)
+
 @app.route('/prediction', methods=['GET', "POST"])
 def prediction():
     if request.method == 'POST':
