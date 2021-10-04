@@ -140,9 +140,7 @@ def fetch_data():
                 continue
             symbol = line.split(",")[0]
             # print(symbol)
-            data = yf.download(
-                # date format: yyyy-mm-dd
-                symbol + '.NS', start="2020-01-01", end="{}".format(current_date))
+            data = yf.download(symbol + '.NS', start="2020-01-01", end="{}".format(current_date))
             data.to_csv('data/stocks/{}.csv'.format(symbol))
 
     return {
