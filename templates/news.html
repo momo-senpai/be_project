@@ -13,7 +13,7 @@
                         <button type="submit" class="submit-btn">Get News</button>
                         {% if articles %}
                             {% for article in articles[:5] %}
-                                <div> <h3>{% print(article['description']) %} </h3></div>
+                                <div> <ul> <li><h3>{% print(article['description']) %} </h3></li></ul></div>
                             {% endfor %}
                         {% else %}
                             <div>

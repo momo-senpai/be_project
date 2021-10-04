@@ -8,7 +8,7 @@ import json
 from flask import Flask, request, render_template
 from patterns import candlestick_patterns
 from datetime import date
-import numpy as np 
+import numpy as np
 # from fbprophet import Prophet
 
 app = Flask(__name__)
@@ -25,6 +25,101 @@ def getjson():
         ticker = ticker.upper()
         path = os.path.join(os.getcwd(), "data", "stocks", ticker+".csv")
         return csv_to_json(path)
+
+
+@app.route('/chatbot')
+def cbatbot():
+    from newspaper import Article
+    import random
+    import string
+    import nltk
+    from sklearn.feature_extraction.text import CountVectorizer
+    from sklearn.metrics.pairwise import cosine_similarity
+    import numpy as np
+    import warnings
+    warnings.filterwarnings('ignore')
+
+    nltk.download('punkt', quiet=True)
+
+# Get the article
+# article = Article('https://www.investopedia.com/articles/investing/082614/how-stock-market-works.asp')
+    article = Article(
+        'https://www.investopedia.com/terms/t/technicalanalysis.asp')
+    article.download()
+    article.parse()
+    article.nlp()
+    corpus = article.text
+
+# Print the article data
+
+    text = corpus
+    sentence_list = nltk.sent_tokenize(text)  # A list a sentence
+
+    print(sentence_list)
+
+    def greeting_response(text):
+        text = text.lower()
+   # Bots greeting response
+        bot_greetings = ['hello', 'hi', 'hey', 'hi there']
+   # User greetings
+        user_greetings = ['hi', 'heya', 'hello', 'hola']
+
+        for word in text.split():
+            if word in user_greetings:
+                return random.choice(bot_greetings)
+
+    def index_sort(list_var):
+        length = len(list_var)
+        list_index = list(range(0, length))
+
+        x = list_var
+        for i in range(length):
+            for j in range(length):
+                if x[list_index[i]] > x[list_index[j]]:
+                    temp = list_index[i]
+                    list_index[i] = list_index[j]
+                    list_index[j] = temp
+
+                    return list_index
+
+    def bot_response(user_input):
+        user_input = user_input.lower()
+        sentence_list.append(user_input)
+        bot_response = ''
+        cm = CountVectorizer().fit_transform(sentence_list)
+        similarity_scores = cosine_similarity(cm[-1], cm)
+        similarity_scores_list = similarity_scores.flatten()
+        index = index_sort(similarity_scores_list)
+        index = index[1:]
+        response_flag = 0
+
+        j = 0
+        for i in range(len(index)):
+            if similarity_scores_list[index[i]] > 0.0:
+                bot_response = bot_response+' '+sentence_list[index[i]]
+                response_flag = 1
+                j = j+1
+                if j > 2:
+                    break
+                if response_flag ==0:
+                    bot_response = bot_response+' '+"I apologize, I dont understand."
+
+                    sentence_list.remove(user_input)
+                    return bot_response
+
+                    print("Bot: Hi! I am your ChatBot.")
+
+                    exit_list = ['exit', 'see you later', 'bye', 'quit']
+                while(True):
+                    user_input = input()
+                    if user_input.lower() in exit_list:
+                        print("Bot: Bye Bye!")
+                        break
+                    else:
+                        if greeting_response(user_input) != None:
+                            print("Bot: "+greeting_response(user_input))
+                        else:
+                            print('Bot: '+bot_response(user_input))
 
 
 @app.route('/scanner')
@@ -82,6 +177,7 @@ def scanner():
                            stocks=stocks, pattern=pattern, fet=fet,
                            state=stock_list, active='scanner')
 
+
 @app.route('/news', methods=['GET', "POST"])
 def news():
     from newsapi import NewsApiClient
@@ -89,18 +185,19 @@ def news():
     if request.method == 'POST':
         term = request.form.get('name')
         all_articles = newsapi.get_everything(q=term,
-                                      sources='google-news-in,the-hindu,the-times-of-india',
-                                      domains='www.thehindu.com,timesofindia.indiatimes.com,news.google.com',
-                                      from_param='2021-09-28',
-                                      to='2021-09-30',
-                                      language='en',
-                                      sort_by='relevancy',
-                                      page=2)
+                                              sources='google-news-in,the-hindu,the-times-of-india',
+                                              domains='www.thehindu.com,timesofindia.indiatimes.com,news.google.com',
+                                              from_param='2021-09-28',
+                                              to='2021-09-30',
+                                              language='en',
+                                              sort_by='relevancy',
+                                              page=2)
 
-        return render_template('news.html',articles=all_articles['articles'])
-            
-            
-    return render_template('news.html',articles=None)
+        return render_template('news.html', articles=all_articles['articles'])
+
+
+    return render_template('news.html', articles=None)
+
 
 @app.route('/prediction', methods=['GET', "POST"])
 def prediction():
@@ -109,17 +206,18 @@ def prediction():
             ticker = yf.Ticker('ITC')
             data = ticker.history(period="1d")
             df = pandas.DataFrame(data).reset_index()
-            df = df[["Date","Close"]]
-            df = df.rename(columns = {"Date":"ds","Close":"y"})
-            fbp = Prophet(daily_seasonality = True)
+            df = df[["Date", "Close"]]
+            df = df.rename(columns = {"Date": "ds","Close":"y"})
+            fbp = Prophet(daily_seasonality= True)
             fbp.fit(df)
-            fut = fbp.make_future_dataframe(periods=3650) 
+            fut = fbp.make_future_dataframe(periods=3650)
             forecast = fbp.predict(fut)
             print(forecast)
-            
+
         except Exception as e:
             print("Failed to get required data.", e)
     return render_template('prediction.html')
+
 
 @app.route('/about')
 def about():
@@ -217,6 +315,7 @@ def csv_to_json(csvFilePath):
     # convert python jsonArray to JSON String and write to file
     jsonString = json.dumps(jsonArray, indent=4)
     return jsonString
+
 
 if __name__ == "__main__":
     app.run(debug=True)
