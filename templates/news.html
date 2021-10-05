@@ -8,12 +8,36 @@
                 <div class="row">
                     <div class="col-12">
                         <form method="POST">
-                        <label for="name">Search:</label>
-                        <input type="text" id="name" name="name">
-                        <button type="submit" class="submit-btn">Get News</button>
+                        <label for="name" style="font-size: 17px;">Search:</label>
+                        <input type="text" id="name" name="name" 
+                        style="width: 25%;
+                        height: 35px;
+                        padding: 12px 20px;
+                        margin: 8px 0;
+                        box-sizing: border-box;
+                        border: 2px solid black;
+                        border-radius: 5px;">
+                        <button type="submit" class="submit-btn" 
+                        style="background-color: #4CAF50; /* Green */
+                        border: none;
+                        color: white;
+                        padding: 6px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;
+                        -webkit-transition-duration: 0.4s; /* Safari */
+                        transition-duration: 0.4s;">Get News</button><br><br>
                         {% if articles %}
                             {% for article in articles[:5] %}
-                                <div> <ul> <li><h3>{% print(article['description']) %} </h3></li></ul></div>
+                                <div style="width: 1000px; 
+                                border: 1px solid white; 
+                                color: black; 
+                                background-color: white; 
+                                border-radius: 7px;"> 
+                                <ul> <li><h6>{% print(article['description']) %} </h6></li></ul></div> <br>
                             {% endfor %}
                         {% else %}
                             <div>
