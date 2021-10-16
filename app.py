@@ -12,8 +12,8 @@ import numpy as np
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import pandas as pd
-from scipy.signal import argrelextrema
-from statsmodels.nonparametric.kernel_regression import KernelReg
+# from scipy.signal import argrelextrema
+# from statsmodels.nonparametric.kernel_regression import KernelReg
 # from fbprophet import Prophet
 
 app = Flask(__name__)
