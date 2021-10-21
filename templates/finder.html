@@ -1,0 +1,45 @@
+{% extends "header.html" %}
+{% block title %}Predict{% endblock %}
+{% block content %}
+<div class="section full-height">
+    <div class="absolute-center">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <form method="POST">
+                        <label for="name" style="font-size: 17px;">Enter Symbol:</label>
+                        <input type="text" id="name" name="name" 
+                        style="width: 25%;
+                        height: 35px;
+                        padding: 12px 20px;
+                        margin: 8px 0;
+                        box-sizing: border-box;
+                        border: 2px solid black;
+                        border-radius: 5px;">
+                        <button type="submit" class="submit-btn" 
+                        style="background-color: #4CAF50; /* Green */
+                        border: none;
+                        color: white;
+                        padding: 6px 20px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        cursor: pointer;
+                        -webkit-transition-duration: 0.4s; /* Safari */
+                        transition-duration: 0.4s;">Find Patterns</button>
+                        </form>
+                        {% for name,pattern_periods in items%}
+                            <div>   <h2>{% print(f"{name}: {len(pattern_periods)} occurences") %}</h2></div>
+                            {% endfor %}
+                        
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

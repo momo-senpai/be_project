@@ -15,7 +15,7 @@ import pandas as pd
 # from scipy.signal import argrelextrema
 # from statsmodels.nonparametric.kernel_regression import KernelReg
 # from fbprophet import Prophet
-
+from pattern_finder import *
 
 app = Flask(__name__)
 
@@ -225,7 +225,23 @@ def prediction():
 
 @app.route('/finder', methods=['GET', "POST"])
 def finder():
-    
+    googl = yf.download('AAPL', start='2020-01-01', end='2020-01-31')
+    googl.drop(['Adj Close'], axis=1, inplace=True)
+    prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
+    patterns = find_patterns(extrema)
+
+    for name, pattern_periods in patterns.items():
+        print(f"{name}: {len(pattern_periods)} occurences")
+
+    print(patterns.items)
+    for name, pattern_periods in patterns.items():
+        if name=='TBOT':
+            print(name)
+        for name, pattern_periods in patterns.items():
+            print(f"{name}: {len(pattern_periods)} occurences")
+
+    return render_template('finder.html', items=pattern.items())
+
     
 
 @app.route('/about')
