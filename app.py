@@ -15,7 +15,7 @@ import pandas as pd
 # from scipy.signal import argrelextrema
 # from statsmodels.nonparametric.kernel_regression import KernelReg
 # from fbprophet import Prophet
-from pattern_finder import *
+from pattern_finder import find_extrema, find_patterns, plot_window
 
 app = Flask(__name__)
 
@@ -34,7 +34,7 @@ def getjson():
 
 
 @app.route('/chatbot')
-def cbatbot():
+def chatbot():
     from newspaper import Article
     import random
     import string
@@ -209,7 +209,7 @@ def news():
 def prediction():
     if request.method == 'POST':
         try:
-            ticker = yf.Ticker('ITC')
+            ticker = yf.Ticker('AAPL')
             data = ticker.history(period="1d")
             df = pandas.DataFrame(data).reset_index()
             df = df[["Date", "Close"]]
@@ -222,25 +222,24 @@ def prediction():
 
         except Exception as e:
             print("Failed to get required data.", e)
+    return render_template('prediction.html')
 
 @app.route('/finder', methods=['GET', "POST"])
 def finder():
-    googl = yf.download('AAPL', start='2020-01-01', end='2020-01-31')
-    googl.drop(['Adj Close'], axis=1, inplace=True)
-    prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
-    patterns = find_patterns(extrema)
+    if request.method == 'POST':
+        symbol = request.form.get('name')
+        try:
+            googl = yf.download(symbol + '.NS', start='2020-01-01', end='2020-01-31')
+            googl.drop(['Adj Close'], axis=1, inplace=True)
+            prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
+            patterns = find_patterns(extrema)
 
-    for name, pattern_periods in patterns.items():
-        print(f"{name}: {len(pattern_periods)} occurences")
+            return render_template('finder.html', items=patterns.items())
 
-    print(patterns.items)
-    for name, pattern_periods in patterns.items():
-        if name=='TBOT':
-            print(name)
-        for name, pattern_periods in patterns.items():
-            print(f"{name}: {len(pattern_periods)} occurences")
+        except Exception as e:
+            print("Failed to get required data.", e)
 
-    return render_template('finder.html', items=pattern.items())
+    return render_template('finder.html')
 
     
 

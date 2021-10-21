@@ -136,30 +136,3 @@ def find_extrema(s, bw='cv_ls'):
 
     # Return series for each with bar as index
     return extrema, prices, smooth_extrema, smooth_prices
-
-googl = yf.download('AAPL', start='2020-01-01', end='2020-01-31')
-googl.drop(['Adj Close'], axis=1, inplace=True)
-prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
-patterns = find_patterns(extrema)
-
-for name, pattern_periods in patterns.items():
-    print(f"{name}: {len(pattern_periods)} occurences")
-
-print(patterns.items)
-for name, pattern_periods in patterns.items():
-    if name=='TBOT':
-        print(name)
-
-        rows = int(np.ceil(len(pattern_periods)/2))
-        print(rows)
-        f, axes = plt.subplots(rows, 2, figsize=(20,5*rows))
-        axes = axes.flatten()
-        i = 0
-        for start, end in pattern_periods:
-          s = prices.index[0]
-          e = prices.index[len(prices.index)-1]
-          plot_window(prices[s:e], extrema.loc[s:e],
-                        smooth_prices[s:e],
-                        smooth_extrema.loc[s:e], ax=axes[i])
-          i+=1
-        plt.show()

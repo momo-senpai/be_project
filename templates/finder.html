@@ -31,11 +31,16 @@
                         -webkit-transition-duration: 0.4s; /* Safari */
                         transition-duration: 0.4s;">Find Patterns</button>
                         </form>
-                        {% for name,pattern_periods in items%}
-                            <div>   <h2>{% print(f"{name}: {len(pattern_periods)} occurences") %}</h2></div>
+                        {% if items %}
+                            {% for name,pattern_periods in items %}
+                                <div style="width: 1000px; 
+                                border: 1px solid white; 
+                                color: black; 
+                                background-color: white; 
+                                border-radius: 7px;"> 
+                                <ul> <li><h6>{% print(name, pattern_periods|length) %} </h6></li></ul></div> <br>
                             {% endfor %}
-                        
-                        </h1>
+                        {% endif %}
                     </div>
                 </div>
             </div>
