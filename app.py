@@ -203,24 +203,28 @@ def news():
 
     return render_template('news.html', articles=None)
 
-
 @app.route('/prediction', methods=['GET', "POST"])
 def prediction():
+    from newsapi import NewsApiClient
+    newsapi = NewsApiClient(api_key='ca28357f195f40a9b89c153b4f569361')
     if request.method == 'POST':
-        try:
-            ticker = yf.Ticker('ITC')
-            data = ticker.history(period="1d")
-            df = pandas.DataFrame(data).reset_index()
-            df = df[["Date", "Close"]]
-            df = df.rename(columns = {"Date": "ds","Close":"y"})
-            fbp = Prophet(daily_seasonality= True)
-            fbp.fit(df)
-            fut = fbp.make_future_dataframe(periods=3650)
-            forecast = fbp.predict(fut)
-            print(forecast)
+        term = request.form.get('name')
+        all_articles = newsapi.get_everything(q=term,
+                                              sources='google-news-in,the-hindu,the-times-of-india',
+                                              domains='www.thehindu.com,timesofindia.indiatimes.com,news.google.com',
+                                              from_param='2021-09-28',
+                                              to='2021-09-30',
+                                              language='en',
+                                              sort_by='relevancy',
+                                              page=2)
 
-        except Exception as e:
-            print("Failed to get required data.", e)
+        return render_template('prediction.html', articles=all_articles['articles'])
+
+
+    return render_template('prediction.html', articles=None)
+
+
+
 def pred():
 
     def plot_window(prices, extrema, smooth_prices, smooth_extrema, ax=None):

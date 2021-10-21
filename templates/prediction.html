@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col-12">
                         <form method="POST">
-                        <label for="name" style="font-size: 17px;">Enter Symbol:</label>
+                        <label for="name" style="font-size: 17px;">Search:</label>
                         <input type="text" id="name" name="name" 
                         style="width: 25%;
                         height: 35px;
@@ -29,7 +29,21 @@
                         margin: 4px 2px;
                         cursor: pointer;
                         -webkit-transition-duration: 0.4s; /* Safari */
-                        transition-duration: 0.4s;">Predict</button>
+                        transition-duration: 0.4s;">Get News</button><br><br>
+                        {% if articles %}
+                            {% for article in articles[:5] %}
+                                <div style="width: 1000px; 
+                                border: 1px solid white; 
+                                color: black; 
+                                background-color: white; 
+                                border-radius: 7px;"> 
+                                <ul> <li><h6>{% print(article['description']) %} </h6></li></ul></div> <br>
+                            {% endfor %}
+                        {% else %}
+                            <div>
+                                <h3>No News Found</h3>
+                            </div>
+                        {% endif %}
                         </form>
                         </h1>
                     </div>
