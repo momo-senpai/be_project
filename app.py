@@ -204,7 +204,6 @@ def news():
 
     return render_template('news.html', articles=None)
 
-
 @app.route('/prediction', methods=['GET', "POST"])
 def prediction():
     if request.method == 'POST':
@@ -223,6 +222,9 @@ def prediction():
         except Exception as e:
             print("Failed to get required data.", e)
     return render_template('prediction.html')
+
+
+
 
 @app.route('/finder', methods=['GET', "POST"])
 def finder():
