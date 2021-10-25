@@ -31,6 +31,7 @@
                         -webkit-transition-duration: 0.4s; /* Safari */
                         transition-duration: 0.4s;">Find Patterns</button>
                         </form>
+                        <h3>  {{symbol}} </h3>
                         {% if items %}
                             {% for name,pattern_periods in items %}
                                 <div style="width: 1000px; 
@@ -40,6 +41,8 @@
                                 border-radius: 7px;"> 
                                 <ul> <li><h6> {{ pap[name]}} : {{pattern_periods|length}} occurrences </h6></li></ul></div> <br>
                             {% endfor %}
+                        {% else %}
+                            <h3> No data or patterns found !   </h3>
                         {% endif %}
                     </div>
                 </div>

@@ -236,7 +236,7 @@ def finder():
             prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
             patterns = find_patterns(extrema)
 
-            return render_template('finder.html', items=patterns.items(), pap=price_action_patterns)
+            return render_template('finder.html',symbol=symbol, items=patterns.items(), pap=price_action_patterns)
 
         except Exception as e:
             print("Failed to get required data.", e)
