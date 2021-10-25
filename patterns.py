@@ -61,4 +61,13 @@ candlestick_patterns = {
     'CDLUPSIDEGAP2CROWS': 'Upside Gap Two Crows',
     'CDLXSIDEGAP3METHODS': 'Upside/Downside Gap Three Methods'
 }
-
+price_action_patterns = {
+    'HS':'Head and Shoulder',
+    'IHS':'Inverse Head and Shoulder',
+    'BBOT':'Broadening Bottom',
+    'BTOP':'Broadening Top',
+    'TTOP':'Triangle Top',
+    'TBOT':'Triangle Bottom',
+    'RTOP':'Rectangle Top',
+    'RBOT':'Rectangle Bottom',
+}

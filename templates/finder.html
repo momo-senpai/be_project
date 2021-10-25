@@ -38,7 +38,7 @@
                                 color: black; 
                                 background-color: white; 
                                 border-radius: 7px;"> 
-                                <ul> <li><h6>{% print(name, pattern_periods|length) %} </h6></li></ul></div> <br>
+                                <ul> <li><h6> {{ pap[name]}} : {{pattern_periods|length}} occurrences </h6></li></ul></div> <br>
                             {% endfor %}
                         {% endif %}
                     </div>

@@ -6,7 +6,7 @@ import array as arr
 import yfinance as yf
 import json
 from flask import Flask, request, render_template
-from patterns import candlestick_patterns
+from patterns import candlestick_patterns, price_action_patterns
 from datetime import date
 import numpy as np
 from collections import defaultdict
@@ -236,7 +236,7 @@ def finder():
             prices, extrema, smooth_prices, smooth_extrema = find_extrema(googl['Close'], bw=[1.5])
             patterns = find_patterns(extrema)
 
-            return render_template('finder.html', items=patterns.items())
+            return render_template('finder.html', items=patterns.items(), pap=price_action_patterns)
 
         except Exception as e:
             print("Failed to get required data.", e)
